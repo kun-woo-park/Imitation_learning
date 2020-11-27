@@ -343,7 +343,7 @@ while True:
     ht0 = 1000 + 10+abs(50*np.random.randn())
     #ht0 = 950
     Vt = 200
-    approach_angle = 90*Deg2Rad*(2*np.random.rand()-1)
+    approach_angle = 50*Deg2Rad*(2*np.random.rand()-1)
     #approach_angle = np.pi/6
     psi0 = np.pi + approach_angle + 2*np.random.randn()*Deg2Rad
     #psi0 = np.pi*7/6
@@ -561,7 +561,7 @@ while True:
     ht0 = 1000 -10-abs(50*np.random.randn())
     #ht0 = 950
     Vt = 200
-    approach_angle = 90*Deg2Rad*(2*np.random.rand()-1)
+    approach_angle = 50*Deg2Rad*(2*np.random.rand()-1)
     #approach_angle = np.pi/6
     psi0 = np.pi + approach_angle + 2*np.random.randn()*Deg2Rad
     #psi0 = np.pi*7/6
@@ -788,7 +788,7 @@ while True:
         ht0 = 1000 -120-10*np.random.randn()
     #ht0 = 950
     Vt = 200
-    approach_angle = 90*Deg2Rad*(2*np.random.rand()-1)
+    approach_angle = 50*Deg2Rad*(2*np.random.rand()-1)
     #approach_angle = np.pi/6
     psi0 = np.pi + approach_angle + 2*np.random.randn()*Deg2Rad
     #psi0 = np.pi*7/6

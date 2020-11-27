@@ -30,159 +30,159 @@ Forward/backward pass size (MB): 0.01
 Params size (MB): 0.08
 Estimated Total Size (MB): 0.09
 ----------------------------------------------------------------
-2020/11/19 20:40:49
-epoch: 1/50 | trn loss: 0.1163 | val loss: 0.0653 | val accuracy: 97.9744% 
+2020/11/26 02:07:20
+epoch: 1/50 | trn loss: 0.1569 | val loss: 0.0487 | val accuracy: 98.5778% 
 
-2020/11/19 20:41:01
-epoch: 2/50 | trn loss: 0.0479 | val loss: 0.0398 | val accuracy: 98.6944% 
+2020/11/26 02:07:34
+epoch: 2/50 | trn loss: 0.0513 | val loss: 0.0583 | val accuracy: 97.8822% 
 
-2020/11/19 20:41:14
-epoch: 3/50 | trn loss: 0.0444 | val loss: 0.0357 | val accuracy: 98.8644% 
+2020/11/26 02:07:48
+epoch: 3/50 | trn loss: 0.0438 | val loss: 0.0451 | val accuracy: 98.5956% 
 
-2020/11/19 20:41:27
-epoch: 4/50 | trn loss: 0.0421 | val loss: 0.0416 | val accuracy: 98.6067% 
+2020/11/26 02:08:02
+epoch: 4/50 | trn loss: 0.0414 | val loss: 0.0341 | val accuracy: 98.9889% 
 
-2020/11/19 20:41:38
-epoch: 5/50 | trn loss: 0.0405 | val loss: 0.0346 | val accuracy: 98.8822% 
+2020/11/26 02:08:16
+epoch: 5/50 | trn loss: 0.0398 | val loss: 0.0383 | val accuracy: 98.8933% 
 
-2020/11/19 20:41:50
-epoch: 6/50 | trn loss: 0.0381 | val loss: 0.0525 | val accuracy: 98.1633% 
+2020/11/26 02:08:30
+epoch: 6/50 | trn loss: 0.0370 | val loss: 0.0882 | val accuracy: 96.8467% 
 
-2020/11/19 20:42:02
-epoch: 7/50 | trn loss: 0.0370 | val loss: 0.0478 | val accuracy: 98.4822% 
+2020/11/26 02:08:43
+epoch: 7/50 | trn loss: 0.0369 | val loss: 0.0353 | val accuracy: 98.7356% 
 
-2020/11/19 20:42:14
-epoch: 8/50 | trn loss: 0.0372 | val loss: 0.0312 | val accuracy: 99.0567% 
+2020/11/26 02:08:59
+epoch: 8/50 | trn loss: 0.0346 | val loss: 0.0330 | val accuracy: 98.8856% 
 
-2020/11/19 20:42:26
-epoch: 9/50 | trn loss: 0.0360 | val loss: 0.0297 | val accuracy: 99.1956% 
+2020/11/26 02:09:13
+epoch: 9/50 | trn loss: 0.0345 | val loss: 0.0271 | val accuracy: 99.1900% 
 
-2020/11/19 20:42:38
-epoch: 10/50 | trn loss: 0.0348 | val loss: 0.0551 | val accuracy: 98.0633% 
+2020/11/26 02:09:29
+epoch: 10/50 | trn loss: 0.0328 | val loss: 0.0337 | val accuracy: 98.8800% 
 
-2020/11/19 20:42:50
-epoch: 11/50 | trn loss: 0.0340 | val loss: 0.0719 | val accuracy: 97.3878% 
+2020/11/26 02:09:45
+epoch: 11/50 | trn loss: 0.0324 | val loss: 0.0241 | val accuracy: 99.1911% 
 
-2020/11/19 20:43:02
-epoch: 12/50 | trn loss: 0.0344 | val loss: 0.0584 | val accuracy: 98.3567% 
+2020/11/26 02:10:01
+epoch: 12/50 | trn loss: 0.0294 | val loss: 0.0274 | val accuracy: 99.0856% 
 
-2020/11/19 20:43:15
-epoch: 13/50 | trn loss: 0.0337 | val loss: 0.0266 | val accuracy: 99.1789% 
+2020/11/26 02:10:16
+epoch: 13/50 | trn loss: 0.0275 | val loss: 0.0282 | val accuracy: 99.1611% 
 
-2020/11/19 20:43:27
-epoch: 14/50 | trn loss: 0.0331 | val loss: 0.0311 | val accuracy: 98.9956% 
+2020/11/26 02:10:33
+epoch: 14/50 | trn loss: 0.0261 | val loss: 0.0222 | val accuracy: 99.2567% 
 
-2020/11/19 20:43:40
-epoch: 15/50 | trn loss: 0.0308 | val loss: 0.0390 | val accuracy: 98.7500% 
+2020/11/26 02:10:49
+epoch: 15/50 | trn loss: 0.0243 | val loss: 0.0255 | val accuracy: 99.1056% 
 
-2020/11/19 20:43:52
-epoch: 16/50 | trn loss: 0.0297 | val loss: 0.0231 | val accuracy: 99.2600% 
+2020/11/26 02:11:06
+epoch: 16/50 | trn loss: 0.0246 | val loss: 0.0243 | val accuracy: 99.1033% 
 
-2020/11/19 20:44:04
-epoch: 17/50 | trn loss: 0.0264 | val loss: 0.0294 | val accuracy: 98.9444% 
+2020/11/26 02:11:22
+epoch: 17/50 | trn loss: 0.0234 | val loss: 0.0263 | val accuracy: 99.1144% 
 
-2020/11/19 20:44:17
-epoch: 18/50 | trn loss: 0.0262 | val loss: 0.0236 | val accuracy: 99.1933% 
+2020/11/26 02:11:38
+epoch: 18/50 | trn loss: 0.0237 | val loss: 0.0228 | val accuracy: 99.1567% 
 
-2020/11/19 20:44:30
-epoch: 19/50 | trn loss: 0.0252 | val loss: 0.0303 | val accuracy: 98.9956% 
+2020/11/26 02:11:55
+epoch: 19/50 | trn loss: 0.0220 | val loss: 0.0288 | val accuracy: 98.9233% 
 
-2020/11/19 20:44:42
-epoch: 20/50 | trn loss: 0.0244 | val loss: 0.0221 | val accuracy: 99.1822% 
+2020/11/26 02:12:12
+epoch: 20/50 | trn loss: 0.0221 | val loss: 0.0216 | val accuracy: 99.1589% 
 
-2020/11/19 20:44:54
-epoch: 21/50 | trn loss: 0.0162 | val loss: 0.0182 | val accuracy: 99.3089% 
+2020/11/26 02:12:29
+epoch: 21/50 | trn loss: 0.0151 | val loss: 0.0183 | val accuracy: 99.2900% 
 
-2020/11/19 20:45:06
-epoch: 22/50 | trn loss: 0.0155 | val loss: 0.0248 | val accuracy: 99.1189% 
+2020/11/26 02:12:45
+epoch: 22/50 | trn loss: 0.0143 | val loss: 0.0186 | val accuracy: 99.2822% 
 
-2020/11/19 20:45:17
-epoch: 23/50 | trn loss: 0.0151 | val loss: 0.0222 | val accuracy: 99.2133% 
+2020/11/26 02:13:01
+epoch: 23/50 | trn loss: 0.0140 | val loss: 0.0203 | val accuracy: 99.2278% 
 
-2020/11/19 20:45:29
-epoch: 24/50 | trn loss: 0.0147 | val loss: 0.0158 | val accuracy: 99.3733% 
+2020/11/26 02:13:17
+epoch: 24/50 | trn loss: 0.0135 | val loss: 0.0161 | val accuracy: 99.3678% 
 
-2020/11/19 20:45:41
-epoch: 25/50 | trn loss: 0.0145 | val loss: 0.0215 | val accuracy: 99.1967% 
+2020/11/26 02:13:34
+epoch: 25/50 | trn loss: 0.0133 | val loss: 0.0209 | val accuracy: 99.2556% 
 
-2020/11/19 20:45:53
-epoch: 26/50 | trn loss: 0.0142 | val loss: 0.0229 | val accuracy: 99.1989% 
+2020/11/26 02:13:50
+epoch: 26/50 | trn loss: 0.0131 | val loss: 0.0179 | val accuracy: 99.3467% 
 
-2020/11/19 20:46:06
-epoch: 27/50 | trn loss: 0.0140 | val loss: 0.0194 | val accuracy: 99.3022% 
+2020/11/26 02:14:06
+epoch: 27/50 | trn loss: 0.0128 | val loss: 0.0198 | val accuracy: 99.3011% 
 
-2020/11/19 20:46:18
-epoch: 28/50 | trn loss: 0.0138 | val loss: 0.0242 | val accuracy: 99.1767% 
+2020/11/26 02:14:22
+epoch: 28/50 | trn loss: 0.0126 | val loss: 0.0220 | val accuracy: 99.2022% 
 
-2020/11/19 20:46:30
-epoch: 29/50 | trn loss: 0.0136 | val loss: 0.0205 | val accuracy: 99.2833% 
+2020/11/26 02:14:38
+epoch: 29/50 | trn loss: 0.0126 | val loss: 0.0216 | val accuracy: 99.2400% 
 
-2020/11/19 20:46:43
-epoch: 30/50 | trn loss: 0.0135 | val loss: 0.0181 | val accuracy: 99.3467% 
+2020/11/26 02:14:54
+epoch: 30/50 | trn loss: 0.0124 | val loss: 0.0158 | val accuracy: 99.3867% 
 
-2020/11/19 20:46:56
-epoch: 31/50 | trn loss: 0.0134 | val loss: 0.0218 | val accuracy: 99.2878% 
+2020/11/26 02:15:09
+epoch: 31/50 | trn loss: 0.0123 | val loss: 0.0224 | val accuracy: 99.1789% 
 
-2020/11/19 20:47:08
-epoch: 32/50 | trn loss: 0.0132 | val loss: 0.0203 | val accuracy: 99.2844% 
+2020/11/26 02:15:24
+epoch: 32/50 | trn loss: 0.0121 | val loss: 0.0201 | val accuracy: 99.3011% 
 
-2020/11/19 20:47:21
-epoch: 33/50 | trn loss: 0.0131 | val loss: 0.0217 | val accuracy: 99.2256% 
+2020/11/26 02:15:39
+epoch: 33/50 | trn loss: 0.0120 | val loss: 0.0208 | val accuracy: 99.2467% 
 
-2020/11/19 20:47:34
-epoch: 34/50 | trn loss: 0.0129 | val loss: 0.0192 | val accuracy: 99.3333% 
+2020/11/26 02:15:54
+epoch: 34/50 | trn loss: 0.0119 | val loss: 0.0229 | val accuracy: 99.2311% 
 
-2020/11/19 20:47:46
-epoch: 35/50 | trn loss: 0.0129 | val loss: 0.0268 | val accuracy: 99.1356% 
+2020/11/26 02:16:09
+epoch: 35/50 | trn loss: 0.0118 | val loss: 0.0163 | val accuracy: 99.4089% 
 
-2020/11/19 20:47:58
-epoch: 36/50 | trn loss: 0.0128 | val loss: 0.0183 | val accuracy: 99.3356% 
+2020/11/26 02:16:24
+epoch: 36/50 | trn loss: 0.0117 | val loss: 0.0178 | val accuracy: 99.3267% 
 
-2020/11/19 20:48:10
-epoch: 37/50 | trn loss: 0.0128 | val loss: 0.0184 | val accuracy: 99.3433% 
+2020/11/26 02:16:39
+epoch: 37/50 | trn loss: 0.0117 | val loss: 0.0271 | val accuracy: 99.0700% 
 
-2020/11/19 20:48:22
-epoch: 38/50 | trn loss: 0.0127 | val loss: 0.0218 | val accuracy: 99.2689% 
+2020/11/26 02:16:54
+epoch: 38/50 | trn loss: 0.0116 | val loss: 0.0262 | val accuracy: 99.1156% 
 
-2020/11/19 20:48:34
-epoch: 39/50 | trn loss: 0.0125 | val loss: 0.0248 | val accuracy: 99.1667% 
+2020/11/26 02:17:11
+epoch: 39/50 | trn loss: 0.0115 | val loss: 0.0188 | val accuracy: 99.3489% 
 
-2020/11/19 20:48:46
-epoch: 40/50 | trn loss: 0.0125 | val loss: 0.0276 | val accuracy: 99.1333% 
+2020/11/26 02:17:28
+epoch: 40/50 | trn loss: 0.0115 | val loss: 0.0152 | val accuracy: 99.4167% 
 
-2020/11/19 20:48:57
-epoch: 41/50 | trn loss: 0.0115 | val loss: 0.0216 | val accuracy: 99.2933% 
+2020/11/26 02:17:44
+epoch: 41/50 | trn loss: 0.0105 | val loss: 0.0199 | val accuracy: 99.3133% 
 
-2020/11/19 20:49:09
-epoch: 42/50 | trn loss: 0.0114 | val loss: 0.0198 | val accuracy: 99.3200% 
+2020/11/26 02:18:00
+epoch: 42/50 | trn loss: 0.0105 | val loss: 0.0198 | val accuracy: 99.3278% 
 
-2020/11/19 20:49:21
-epoch: 43/50 | trn loss: 0.0114 | val loss: 0.0204 | val accuracy: 99.3089% 
+2020/11/26 02:18:16
+epoch: 43/50 | trn loss: 0.0104 | val loss: 0.0215 | val accuracy: 99.2300% 
 
-2020/11/19 20:49:34
-epoch: 44/50 | trn loss: 0.0114 | val loss: 0.0220 | val accuracy: 99.2778% 
+2020/11/26 02:18:33
+epoch: 44/50 | trn loss: 0.0104 | val loss: 0.0205 | val accuracy: 99.3000% 
 
-2020/11/19 20:49:46
-epoch: 45/50 | trn loss: 0.0113 | val loss: 0.0242 | val accuracy: 99.1900% 
+2020/11/26 02:18:49
+epoch: 45/50 | trn loss: 0.0104 | val loss: 0.0210 | val accuracy: 99.2822% 
 
-2020/11/19 20:49:58
-epoch: 46/50 | trn loss: 0.0113 | val loss: 0.0207 | val accuracy: 99.3022% 
+2020/11/26 02:19:05
+epoch: 46/50 | trn loss: 0.0104 | val loss: 0.0202 | val accuracy: 99.2911% 
 
-2020/11/19 20:50:11
-epoch: 47/50 | trn loss: 0.0113 | val loss: 0.0233 | val accuracy: 99.2289% 
+2020/11/26 02:19:20
+epoch: 47/50 | trn loss: 0.0104 | val loss: 0.0187 | val accuracy: 99.3400% 
 
-2020/11/19 20:50:23
-epoch: 48/50 | trn loss: 0.0113 | val loss: 0.0202 | val accuracy: 99.3289% 
+2020/11/26 02:19:35
+epoch: 48/50 | trn loss: 0.0104 | val loss: 0.0210 | val accuracy: 99.2922% 
 
-2020/11/19 20:50:36
-epoch: 49/50 | trn loss: 0.0113 | val loss: 0.0213 | val accuracy: 99.2933% 
+2020/11/26 02:19:50
+epoch: 49/50 | trn loss: 0.0103 | val loss: 0.0211 | val accuracy: 99.2744% 
 
-2020/11/19 20:50:48
-epoch: 50/50 | trn loss: 0.0113 | val loss: 0.0211 | val accuracy: 99.3078% 
+2020/11/26 02:20:05
+epoch: 50/50 | trn loss: 0.0104 | val loss: 0.0215 | val accuracy: 99.2500% 
 
-error with test down sim 500:  88
-Mean avoiding distance of correct avoidance with correction 412:  131.72501158629288
-error with test up sim 500:  15
-Mean avoiding distance of correct avoidance with correction 485:  127.74796271296555
-Mean avoiding distance both up and down:  129.73648714962923
-error with test stay sim 500:  1
+error with test down sim 500:  1
+Mean avoiding distance of correct avoidance with correction 499:  133.3454692785624
+error with test up sim 500:  1
+Mean avoiding distance of correct avoidance with correction 499:  129.90131589963732
+Mean avoiding distance both up and down:  131.62339258909986
+error with test stay sim 500:  0

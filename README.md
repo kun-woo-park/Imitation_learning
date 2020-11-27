@@ -3,4 +3,69 @@
 
 ## Environment(Data) design (datagen.py)
 본체 시야 내부에 있는 항공기를 회피하는 것을 전제로 했기에, 상대기의 시작점은 본체의 이동방향에 대해 부채꼴 형식으로 +-50도 위치에서 출발하게 설정하였다.
-본체는 NED 좌표계 기준 NE 평면의 (0, 0)에서 +N 방향으로 200의 속력으로 진행하고, 상대기는 
+본체는 NED 좌표계 기준 NE 평면의 (0, 0)에서 +N 방향으로 200의 속력으로 진행하고, 상대기는 (0, 2000) 기준 반경 2000의 부채꼴 형태로 (0, 2000)을 향해 200의 속력으로 접근하도록 되어있다.
+본체의 고도는 NED 좌표계 기준 D = -1000에서, 상대기는 -1000 +- 200에서 시작한다.
+해당 내용을 간단하게 표현하면 아래 그림과 같다.
+
+### Environment overview
+img
+
+회피를 진행하기에 앞서, 항공기 기동의 동역학을 구현하였는데, 해당 기동에 대한 역학은 아래와 같은 제어루프로 설계하였다.
+
+### Dynamics of controling aircrafts
+img
+
+회피를 판단하는 기준은 총 5가지의 feature에 대한 연산으로 진행할 수 있도록 하였다. 5개의 feature는 아래와 같다.
+
+- r : 본체와 상대기의 상대거리
+- vc : 상대기의 접근속도(상대속도)
+- los : Line of sight
+- daz : Azimuth의 스텝 당 변화량
+- dlos : Los의 스텝 당 변화량
+
+5개의 feature들로는 해당 진행경로를 유지했을때, 상대기와의 예상 최소 수직거리(MDV, minimum distance of vertical)와 예상 최소 수평거리(MDH, minimum distance of horizontal)을 계산할 수 있었다. 여기에 기동을 푸는 조건을 위해 필요한 현재 상대기와의 고도차이(코드에선 dist_cruise로 표현하였다.)역시 계산 할 수 있었다.
+
+### Calculate MDV, MDH and dist_cruise
+img
+
+이 세가지 정보 (MDV, MDH and dist_cruise)로 회피 명령을 내릴지, 혹은 현재 경로를 유지할지를 매 순간마다 결정할 수 있는 닫힌 결정루프를(만약, 강화학습에 적용한다면 MDP를 기준으로 설계해야 하기 때문) 설계해야 했다. 설계한 결정루프의 구조를 순서도로 표현하면 아래와 같다.
+
+### Flow chart of decision loop
+img
+
+이렇게 구현된 환경을 토대로 학습시키기 위해서는, 비행기가 어떤 상황의 어떤 순간에던 적용이 가능하도록, 데이터를 뽑을때 랜덤한 time step에서 랜덤하게 샘플을 추출할 필요가 있었다. 따라서 하나의 에피소드의 전체 time line 에서 랜덤한 time step 지점을 뽑아 샘플로 만들었다. 각 데이터 샘플은 네트워크의 입력으로 들어갈 5개의 feature (r, vc, los, das, dlos)와 그때 비행기에게 내려야할 고도변화 명령(hdot_cmd)로 구성되었다.
+
+## Network modeling (colision_avoidance_net_idx.py, train.sh, train_idx.sh)
+회피 기동을 학습하기에 가장 적합한 network의 구조를 찾기 위해, 먼저 network의 구조를 3개의 FC(Fully connected) layer로 구성된 block으로 구현하였다. 각 block은 node 개수와 layer 개수를 입력값으로 주면, 해당 입력값에 맞게 모델을 구현하도록 설계하였다. 
+
+### Network model with 3blocks
+img
+
+각 block의 node와 layer를 자동으로 입력받아 실험결과를 저장하도록 train.sh와 train_idx.sh의 두개의 bash script를 작성하여 실행시켰다. 실험내용의 범주는 아래와 같다. 각 실험내용은 총 4회씩 진행되었다.
+
+- Layer : [1, 1, 1] , [2, 2, 2]
+- Node : [20-80(interval 20), 20-80(interval 20), 20-80(interval 20)]
+
+#### Additional experiments
+##### Exp 1.
+- Layer : [1, 1, 1]
+- Node : [5, 5, 5]
+##### Exp 2.
+- Layer : [1, 1, 1] , [2, 2, 2]
+- Node : [10, 10, 10]
+
+결과를 분석하기 위해 초기에는 각 모델에 대한 test 결과를 토대로 5가지 요소에 대한 분석을 진행하려했다. 해당 요소들은 아래와 같다.
+- Down command error
+- UP command error
+- Stay command error
+- Minimum distance on all episode time steps
+- Number of model parameters
+각 요소들 별로, 4회의 실험에 대한 표준편차와 평균값을 계산하여 평가 요소에 반영하려 계산하였으나, error의 최대값이 2였고, 거의 command 오류가 발생하지 않아 error 요소를 제외하고, 아래의 두 요소(minimum distance on all episode time steps, number of model parameters)로 최적의 네트워크를 판별하였다.
+
+### Result of each network model
+img
+
+두가지 요소에 대해, 각각의 가중치를 0.8, 0.2로 두어 계산한 결과 최종 모델은 ~ 이 되었다.
+
+### Final model structure'
+img

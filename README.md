@@ -8,12 +8,13 @@
 해당 내용을 간단하게 표현하면 아래 그림과 같다.
 
 ### Environment overview
-img
+<img src="./img/env_overview.PNG" width="80%">
 
 회피를 진행하기에 앞서, 항공기 기동의 동역학을 구현하였는데, 해당 기동에 대한 역학은 아래와 같은 제어루프로 설계하였다.
 
 ### Dynamics of controling aircrafts
-img
+<img src="./img/vector_dec.PNG" width="60%">
+<img src="./img/dynamics.PNG" width="60%">
 
 회피를 판단하는 기준은 총 5가지의 feature에 대한 연산으로 진행할 수 있도록 하였다. 5개의 feature는 아래와 같다.
 
@@ -26,22 +27,63 @@ img
 5개의 feature들로는 해당 진행경로를 유지했을때, 상대기와의 예상 최소 수직거리(MDV, minimum distance of vertical)와 예상 최소 수평거리(MDH, minimum distance of horizontal)을 계산할 수 있었다. 여기에 기동을 푸는 조건을 위해 필요한 현재 상대기와의 고도차이(코드에선 dist_cruise로 표현하였다.)역시 계산 할 수 있었다.
 
 ### Calculate MDV, MDH and dist_cruise
-img
+<img src="./img/feature_form.PNG" width="30%">
 
-이 세가지 정보 (MDV, MDH and dist_cruise)로 회피 명령을 내릴지, 혹은 현재 경로를 유지할지를 매 순간마다 결정할 수 있는 닫힌 결정루프를(만약, 강화학습에 적용한다면 MDP를 기준으로 설계해야 하기 때문) 설계해야 했다. 설계한 결정루프의 구조를 순서도로 표현하면 아래와 같다.
+이 세가지 정보 (MDV, MDH and dist_cruise)로 회피 명령을 내릴지, 혹은 현재 경로를 유지할지를 매 순간마다 결정할 수 있는 닫힌 결정루프를(만약, 강화학습에 적용한다면 MDP를 기준으로 설계해야 하기 때문) 설계해야 했다. 설계한 결정루프의 구조에 대한 코드는 아래와 같다. 이때, 회피시 기동 명령(hcmd_dot)의 크기는 +-20으로 하였다.
 
-### Flow chart of decision loop
-img
+### Python code of decision loop
+```python
+                if min_dist_vert>0:
+                    if min_dist_vert<dist_sep:
+                        if np.abs(dist_cruise)<dist_sep:
+                            if (min_dist_horiz <dist_sep):
+                                if hdot_cmd != -20:
+                                    count_change_hdot+=1
 
+                                hdot_cmd = -20
+                            else:
+                                hdot_cmd=0
+                        else:
+                            hdot_cmd=0
+                    else:
+                        if np.abs(dist_cruise)>dist_sep:
+                            hdot_cmd = 0
+                        else:
+                            if hdot_cmd != -20:
+                                count_change_hdot+=1
+                            hdot_cmd = -20
+                else:
+                    if min_dist_vert>-dist_sep:
+                        if np.abs(dist_cruise)<dist_sep:
+                            if min_dist_horiz <dist_sep:
+                                if hdot_cmd != 20:
+                                    count_change_hdot+=1
+
+                                hdot_cmd = 20
+                            else:
+                                hdot_cmd=0
+                        else:
+                            hdot_cmd=0
+                    else:
+                        if np.abs(dist_cruise)>dist_sep:
+                            hdot_cmd = 0
+                        else:
+                            if hdot_cmd!=20:
+                                count_change_hdot+=1
+                            hdot_cmd=20
+```
+                            
 이렇게 구현된 환경을 토대로 학습시키기 위해서는, 비행기가 어떤 상황의 어떤 순간에던 적용이 가능하도록, 데이터를 뽑을때 랜덤한 time step에서 랜덤하게 샘플을 추출할 필요가 있었다. 따라서 하나의 에피소드의 전체 time line 에서 랜덤한 time step 지점을 뽑아 샘플로 만들었다. 각 데이터 샘플은 네트워크의 입력으로 들어갈 5개의 feature (r, vc, los, das, dlos)와 그때 비행기에게 내려야할 고도변화 명령(hdot_cmd)로 구성되었다.
+생성한 데이터는 train data 300000개, test data 90000개의 총 390000개의 데이터를 생성하였다.
 
 ## Network modeling (colision_avoidance_net_idx.py, train.sh, train_idx.sh)
 회피 기동을 학습하기에 가장 적합한 network의 구조를 찾기 위해, 먼저 network의 구조를 3개의 FC(Fully connected) layer로 구성된 block으로 구현하였다. 각 block은 node 개수와 layer 개수를 입력값으로 주면, 해당 입력값에 맞게 모델을 구현하도록 설계하였다. 
 
 ### Network model with 3blocks
-img
 
-각 block의 node와 layer를 자동으로 입력받아 실험결과를 저장하도록 train.sh와 train_idx.sh의 두개의 bash script를 작성하여 실행시켰다. 실험내용의 범주는 아래와 같다. 각 실험내용은 총 4회씩 진행되었다.
+<img src="./img/block_model.PNG" width="100%">
+
+각 block의 node와 layer를 자동으로 입력받아 실험결과를 저장하도록 train.sh와 train_idx.sh의 두개의 bash script를 작성하여 실행시켰다. 실험내용의 범주는 아래와 같다. 각 실험내용은 총 4회씩 진행되었다. 학습에 대한 hyper parameters는 위의 network model 이미지에 작성된 내용대로 진행하였다.
 
 - Layer : [1, 1, 1] , [2, 2, 2]
 - Node : [20-80(interval 20), 20-80(interval 20), 20-80(interval 20)]
@@ -65,7 +107,7 @@ img
 ### Result of each network model
 img
 
-두가지 요소에 대해, 각각의 가중치를 0.8, 0.2로 두어 계산한 결과 최종 모델은 ~ 이 되었다.
+두가지 요소에 대해, 각각의 가중치를 0.9, 0.1로 두어 계산한 결과 최종 모델은 node = [40, 20, 60], layer = [2, 2, 2] 이 되었다.
 
-### Final model structure'
+### Result of final model structure
 img

@@ -113,7 +113,7 @@
 
 ### Result of final model structure
 #### Confusion matrix of result
- <img src="./img/conf_mat.png" width="40%">
+ <img src="./img/conf_mat.png" width="60%">
 
 #### Avoid down simulation path result
  <img src="./img/down_NE.png" width="40%">

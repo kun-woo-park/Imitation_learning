@@ -102,12 +102,36 @@
 - Stay command error
 - Minimum distance on all episode time steps
 - Number of model parameters
-각 요소들 별로, 4회의 실험에 대한 표준편차와 평균값을 계산하여 평가 요소에 반영하려 계산하였으나, error의 최대값이 2였고, 거의 command 오류가 발생하지 않아 error 요소를 제외하고, 아래의 두 요소(minimum distance on all episode time steps, number of model parameters)로 최적의 네트워크를 판별하였다.
 
-### Result of each network model
-img
+각 요소들 별로, 4회의 실험에 대한 표준편차와 평균값을 계산하여 평가 요소에 반영하려 계산하였으나, error의 최대값이 2였고, 거의 command 오류가 발생하지 않아 error 요소를 제외하고, 아래의 두 요소(minimum distance on all episode time steps, number of model parameters)로 최적의 네트워크를 판별하였다. minimum distance on all episode time steps 요소를 줄여서 min_dist 라고 표현하겠다.
 
-두가지 요소에 대해, 각각의 가중치를 0.9, 0.1로 두어 계산한 결과 최종 모델은 node = [40, 20, 60], layer = [2, 2, 2] 이 되었다.
+##
+
+여기서 min_dist 요소가 실험마다 편차가 높은것은 torch의 random seed마다 수렴이 달라진다는 의미로, under fitting의 가능성이 있다고 판단하여, min_dist의 표준편차 역시 평가요소에 반영하였다. 해당 내용에 대한 모든 결과는 [std_df_fix.csv](std_df_fix.csv) 에서 확인할 수 있다. (여기서 min_dist가 mean_dist로 표현되었는데, 이는 4회의 실험에 대한 min_dist의 평균치이다.)
+
+총 세가지 요소 (min_dist, 표준편차, number of model parameters)에 대해, 각각의 가중치를 0.8, 0.1, 0.1로 두어 계산한 결과 최종 모델은 node = [40, 20, 60], layer = [2, 2, 2] 이 되었다. 해당 가중치 계산 결과는 [compare_sum_df_fix.csv](compare_sum_df_fix.csv) 에서 확인할 수 있다.
 
 ### Result of final model structure
-img
+#### Confusion matrix of result
+ <img src="./img/conf_mat.png" width="40%">
+
+#### Avoid down simulation path result
+ <img src="./img/down_NE.png" width="40%">
+ <img src="./img/down_d.png" width="40%">
+
+#### Avoid down simulation distribution result(minimum approach distance)
+ <img src="./img/down_dist.png" width="40%">
+
+#### Avoid up simulation path result
+ <img src="./img/up_NE.png" width="40%">
+ <img src="./img/up_d.png" width="40%">
+
+#### Avoid up simulation distribution result(minimum approach distance)
+ <img src="./img/up_dist.png" width="40%">
+
+#### Not Avoid simulation path result
+ <img src="./img/non_NE.png" width="40%">
+ <img src="./img/non_d.png" width="40%">
+
+#### Not Avoid simulation distribution result(minimum approach distance)
+ <img src="./img/non_dist.png" width="40%">

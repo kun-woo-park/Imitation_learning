@@ -177,7 +177,7 @@ def data_gen():
 
             # estimate closest approach
             min_dist_vert = r*r/vc*dlos
-            min_dist_horiz = r*r/vc0*daz
+            min_dist_horiz = r*r/vc*daz
 
             # estimate cruise distance
             dist_cruise = r*los

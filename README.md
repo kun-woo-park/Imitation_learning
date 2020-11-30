@@ -143,5 +143,5 @@ Confusion matrix의 결과를 보면, False positive와 True negative가 조금�
 추가적으로 train dataset의 크기에 따라 어느정도의 dataset만으로도 충분한 학습이 가능한지 확인하기 위해, dataset의 갯수를 다르게 하여 학습을 진행해보았다. 결과는 다음과 같다.
 
 #### Accuracy by number of datas
- <img src="./img/data_num_test.png" width="80%">
+ <img src="./img/data_num_test.png" width="100%">
 

@@ -266,41 +266,6 @@ def uni_data_generator(num_of_data):
     return data
 
 
-# In[ ]:
-
-
-if os.path.exists('norm_data_train_uniform_ext.csv') is False:
-    # # training data
-    data=uni_data_generator(300000)
-    data=np.array(data)
-    mean=data.mean(axis=0)[:5]
-    std=data.std(axis=0)[:5]
-    np.save('mean.npy',[_ for _ in mean[:]])
-    np.save('std.npy',[_ for _ in std[:]])
-    data[:,:5]=(data[:,:5]-mean)/(std)
-    df=pd.DataFrame(data,columns=['r','vc','los','daz','dlos','hdot_cmd'])
-    df.to_csv('norm_data_train_uniform_ext.csv',header=False,index=False)
-else:
-    mean=np.load('mean.npy').tolist()
-    std=np.load('std.npy').tolist()
-if os.path.exists('norm_data_test_uniform_ext.csv') is False:
-    # # training data
-    data=uni_data_generator(90000)
-    data=np.array(data)
-    mean=data.mean(axis=0)[:5]
-    std=data.std(axis=0)[:5]
-    np.save('mean_test.npy',[_ for _ in mean[:]])
-    np.save('std_test.npy',[_ for _ in std[:]])
-    data[:,:5]=(data[:,:5]-mean)/(std)
-    df=pd.DataFrame(data,columns=['r','vc','los','daz','dlos','hdot_cmd'])
-    df.to_csv('norm_data_test_uniform_ext.csv',header=False,index=False)
-else:
-    mean=np.load('mean_test.npy').tolist()
-    std=np.load('std_test.npy').tolist()
-
-
-# In[ ]:
-
 
 
 

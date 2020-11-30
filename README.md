@@ -137,7 +137,7 @@
  <img src="./img/non_dist.png" width="40%">
  
 ##
-Confusion matrix의 결과를 보면, False positive와 True negative가 조금씩 나오는것을 볼 수 있는데, 이에 대한 결과를 확인해본 결과 위로 명령을 줘야하는데 아래로 주는경우, 혹은 그 반대의 경우의 오류는 상대기의 고도가 본체의 고도와 거의 동일해 위로 회피하거나 아래로 회피하는 선택의 차이가 없는 경우에 발생했다. 또한 회피를 해야하는데 정지해있는 경우는 상대기와의 거리가 아주 가깝거나, 혹은 아주 먼 경우, 즉 데이터 분포상 드물게 발생하여 학습에 큰 영향을 주지 못한 data들이었다. 정지명령에 대한 error data는 [error_df.csv](error_df.csv)에서 확인 할 수 있다.
+Confusion matrix의 결과를 보면, False positive와 True negative가 조금씩 나오는것을 볼 수 있는데, 이에 대한 결과를 확인해본 결과 위로 명령을 줘야하는데 아래로 주는경우, 혹은 그 반대의 경우의 오류는 상대기의 고도가 본체의 고도와 거의 동일해 위로 회피하거나 아래로 회피하는 선택의 차이가 없는 경우에 발생했다. 이에 대한 전체 error data는 [overall_error_df.csv](./data_number_test/overall_error_df.csv)에서 확인 할 수 있다. 또한 회피를 해야하는데 정지해있는 경우는 상대기와의 거리가 아주 가깝거나, 혹은 아주 먼 경우, 즉 데이터 분포상 드물게 발생하여 학습에 큰 영향을 주지 못한 data들이었다. 정지명령에 대한 error data는 [stay_error_df.csv](./data_number_test/stay_error_df.csv)에서 확인 할 수 있다.
 ##
 
 추가적으로 train dataset의 크기에 따라 어느정도의 dataset만으로도 충분한 학습이 가능한지 확인하기 위해, dataset의 갯수를 다르게 하여 학습을 진행해보았다. 결과는 다음과 같다.

@@ -1,13 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[10]:
-
-
 import torch,itertools,argparse,os,time,sys,random
 import numpy as np
 import matplotlib.pyplot as plt
-import torchvision
 import torch.nn as nn
 import torch.nn.functional as F
 import argparse
@@ -19,9 +12,6 @@ import seaborn as sns
 
 # torch.manual_seed(0)
 
-# In[ ]:
-
-
 parser = argparse.ArgumentParser(description='Train Implementation')
 parser.add_argument('--num_layers', nargs='+', type=int, default=[2, 2, 2], help='num layers')
 parser.add_argument('--num_nodes', nargs='+', type=int, default=[40, 40, 40], help='num nodes')
@@ -32,17 +22,13 @@ os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"]="{}".format(args.index)
 
 
-# In[11]:
-
-
 mean=np.load('mean.npy').tolist()
 std=np.load('std.npy').tolist()
 mean_test=np.load('mean_test.npy').tolist()
 std_test=np.load('std_test.npy').tolist()
 
 
-# In[12]:
-
+# Define Custom dataset
 
 class CustomDataset(Dataset):
     def __init__(self,path):
@@ -59,20 +45,24 @@ class CustomDataset(Dataset):
     def __len__(self):
         return self.len
 
-
-# In[13]:
-
+# Set batch size and Learning rate
 
 batch_size=300
 lr=0.001
+
+# Define variables for number of layers and number of nodes
 
 num_layers=args.num_layers
 _nodes=args.num_nodes
 idx=args.index
 
+# Get input from user and set log file path
+
 model_char="{}_{}_{}_{}_{}_{}_{}".format(_nodes[0],_nodes[1],_nodes[2],num_layers[0],num_layers[1],num_layers[2],idx)
 log_file = open('./res_log/'+model_char+'.txt','w')
 sys.stdout = log_file
+
+# Load dataset
 
 train_dataset = CustomDataset('norm_data_train_uniform_ext.csv')
 train_loader = DataLoader(dataset=train_dataset,pin_memory=True,
@@ -85,9 +75,7 @@ test_loader = DataLoader(dataset=test_dataset,pin_memory=True,
                           shuffle=True,
                           num_workers=60,drop_last=True)
 
-
-# In[14]:
-
+# Define Model structure
 
 class FClayer(nn.Module):
     def __init__(self, innodes: int, nodes: int):
@@ -98,9 +86,6 @@ class FClayer(nn.Module):
         out=self.fc(x)
         out=self.act(out)
         return out
-
-
-# In[15]:
 
 
 class WaveNET(nn.Module):
@@ -142,31 +127,17 @@ class WaveNET(nn.Module):
     def forward(self, x: Tensor) -> Tensor:
         return self._forward_impl(x)
 
-
-# In[16]:
-
-
 def Model(block, planes, **kwargs):
     model = WaveNET(block, planes, **kwargs)
     return model
 
-
-# In[17]:
-
-
 model=WaveNET(FClayer,num_layers,_nodes).cuda()
 
-
-# In[18]:
 summary(model,(1,5))
 
 criterion = nn.CrossEntropyLoss().cuda()
 optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=1e-4)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=20)
-
-
-# In[ ]:
-
 
 saving_path="./res_model/"
 trn_loss_list = []
@@ -220,9 +191,7 @@ for epoch in range(total_epoch):
     del predicted
     
     scheduler.step()
-    
-    
-    
+
     trn_loss_list.append(trn_loss/len(train_loader))
     val_loss_list.append(val_loss/len(test_loader))
     val_acc=cor_match/(len(test_loader)*batch_size)
@@ -256,22 +225,10 @@ for epoch in range(total_epoch):
 #             torch.save(model, model_name)
 #             print("Model replaced and saved as ",model_name)
 
-
-# In[ ]:
-
-
 model_name=saving_path+"Custom_model_"+model_char+"_fin"
 torch.save(model, model_name)
 
-
-# In[ ]:
-
-
 saving_img_path="./res_img/"
-
-
-# In[ ]:
-
 
 # initial setting
 
@@ -307,10 +264,6 @@ def int_model(z, t, hdot_cmd):                          # computes state derivat
     hddot = a*np.cos(gamma) - g
     Rdot = Vm*np.cos(gamma)
     return np.array([adot, addot, hdot, hddot, Rdot]) # returns state derivatives 
-
-
-# In[ ]:
-
 
 # player initial conditions
 total_sim=500
@@ -500,9 +453,6 @@ while True:
 
 total_cor_mean=0
 
-# In[ ]:
-
-
 err=0
 cor=0
 cor_sum=0
@@ -520,18 +470,11 @@ total_cor_mean+=cor_mean
 print("error with test down sim {}: ".format(total_sim), err)
 print("Mean avoiding distance of correct avoidance with correction {}: ".format(cor), cor_mean)
 
-
-# In[ ]:
-
-
 plt.figure(figsize=(15,15))
 sns.set(color_codes=True)
 sns.distplot(disy)
 plt.savefig(saving_img_path+"Down_"+model_char+".png", dpi=300)
 plt.close()  
-
-
-# In[ ]:
 
 hdot_flag=0
 res_Y = np.zeros(((N,7,total_sim)))                       # print-out data
@@ -716,11 +659,6 @@ while True:
     if hdot_flag==total_sim:
         break
         
-
-
-# In[ ]:
-
-
 err=0
 cor=0
 cor_sum=0
@@ -741,19 +679,11 @@ print("Mean avoiding distance of correct avoidance with correction {}: ".format(
 
 print("Mean avoiding distance both up and down: ", total_cor_mean)
 
-
-# In[ ]:
-
-
 plt.figure(figsize=(15,15))
 sns.set(color_codes=True)
 sns.distplot(disy)
 plt.savefig(saving_img_path+"UP_"+model_char+".png", dpi=300)
 plt.close()  
-
-
-# In[ ]:
-
 
 # player initial conditions
 
@@ -942,11 +872,6 @@ while True:
         hdot_flag+=1
     if hdot_flag==total_sim:
         break
-        
-
-
-# In[ ]:
-
 
 err=0
 disy=np.zeros(total_sim)
@@ -955,10 +880,6 @@ for i in range (total_sim):
     if min(res_Y[:,6,i])<dist_sep:
         err+=1
 print("error with test stay sim {}: ".format(total_sim), err)
-
-
-# In[ ]:
-
 
 plt.figure(figsize=(15,15))
 sns.set(color_codes=True)

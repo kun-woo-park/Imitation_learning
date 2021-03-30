@@ -10,7 +10,7 @@ parser.add_argument('--num_layers', nargs='+', type=int,
                     default=[2, 2, 2], help='num layers')
 parser.add_argument('--num_nodes', nargs='+', type=int,
                     default=[40, 40, 40], help='num nodes')
-parser.add_argument('--index', type=int, default=0, help='index')
+parser.add_argument('--index', type=int, default=0, help='index(gpu number)')
 args = parser.parse_args()
 
 # designate GPU device number

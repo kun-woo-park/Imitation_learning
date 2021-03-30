@@ -8,7 +8,6 @@ import torch.nn as nn
 import seaborn as sns
 import matplotlib.pyplot as plt
 from torch import Tensor
-from typing import Type, Union, List
 from torchsummary import summary
 from torch.utils.data import Dataset
 

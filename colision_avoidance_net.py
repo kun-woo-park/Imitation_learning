@@ -25,12 +25,12 @@ if __name__ == "__main__":
 
     # setting number of layers and nodes by user input
     num_layers = args.num_layers
-    _nodes = args.num_nodes
+    nodes = args.num_nodes
     idx = args.index
 
     # setting saving name of logfile, image and model weight
     model_char = "{}_{}_{}_{}_{}_{}_{}".format(
-        _nodes[0], _nodes[1], _nodes[2], num_layers[0], num_layers[1], num_layers[2], idx)
+        nodes[0], nodes[1], nodes[2], num_layers[0], num_layers[1], num_layers[2], idx)
 
     # setting log file path and system logger
     log_file = './res_log/'+model_char+'.txt'
@@ -50,7 +50,7 @@ if __name__ == "__main__":
     print("Data load complete")
 
     # train model
-    model = train_model(num_layers, _nodes, lr, batch_size, train_loader, val_loader, model_char, system_logger)
+    model = train_model(num_layers, nodes, lr, batch_size, train_loader, val_loader, model_char, system_logger)
 
     # test model
     for choose_ht, cmd_char_i in enumerate(["Down", "Up", "Stay"]):

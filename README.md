@@ -2,6 +2,13 @@
  본 Repo는 항공기 충돌회피 보조시스템 학습을 위한 policy net의 구조를 실험하는 내용이다.
  [모방학습을 활용한 항공기 충돌회피 정책 네트워크 모델링.pdf](모방학습을%20활용한%20항공기%20충돌회피%20정책%20네트워크%20모델링.pdf) 에서 논문 내용을 확인 할 수 있다. 정리되지 않은 실험내용은 [Previous_experiments](https://github.com/aisl-khu/collision_avoidance/tree/master/Aircraft_avoidance_policy_net)에서 확인할 수 있다.
 
+## Implement project
+```bash
+git clone https://github.com/kun-woo-park/Imitation_learning.git
+cd Imitation_learning
+sh train.sh
+```
+
 ## Environment(Data) design
 본체 시야 내부에 있는 항공기를 회피하는 것을 전제로 했기에, 상대기의 시작점은 본체의 이동방향에 대해 부채꼴 형식으로 +-50도 위치에서 출발하게 설정하였다.
 본체는 NED 좌표계 기준 NE 평면의 (0, 0)에서 +N 방향으로 200의 속력으로 진행하고, 상대기는 (0, 2000) 기준 반경 2000의 부채꼴 형태로 (0, 2000)을 향해 200의 속력으로 접근하도록 되어있다.

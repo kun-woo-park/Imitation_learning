@@ -66,7 +66,7 @@ class FClayer(nn.Module):                                       # define fully c
         self.fc = nn.Linear(innodes, nodes)
         self.act = nn.LeakyReLU(0.2, inplace=True)
 
-    def forward(self, x: Tensor) -> Tensor:
+    def forward(self, x):
         out = self.fc(x)
         out = self.act(out)
         return out

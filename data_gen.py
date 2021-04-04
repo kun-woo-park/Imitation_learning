@@ -258,7 +258,7 @@ def uni_data_generator(num_of_data):
 
 if __name__ == "__main__":
     if os.path.exists('norm_data_train_uniform_ext.csv') is False:
-        # # training data
+        ## train data
         data = uni_data_generator(300000)
         data = np.array(data)
         mean = data.mean(axis=0)[:5]
@@ -273,7 +273,7 @@ if __name__ == "__main__":
         mean = np.load('mean.npy').tolist()
         std = np.load('std.npy').tolist()
     if os.path.exists('norm_data_test_uniform_ext.csv') is False:
-        # # training data
+        ## validation data
         data = uni_data_generator(90000)
         data = np.array(data)
         mean = data.mean(axis=0)[:5]

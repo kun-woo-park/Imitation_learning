@@ -75,7 +75,6 @@ def data_gen():
         X[0, :] = X0
         dotX_p = 0
 
-        Y = np.zeros((1, 3))                       # print-out data
         theta0 = gamma0 + X0[0]*Acc2AoA + AoA0  # initial pitch angle
 
         DCM = np.zeros((3, 3))                      # initial DCM NED-to-Body
@@ -239,21 +238,21 @@ def uni_data_generator(num_of_data):
     data = []
     each_num = num_of_data/3
     all_feat = 0
-    a = 0
-    b = 0
-    c = 0
+    down = 0
+    stay = 0
+    up = 0
     while(all_feat < 3):
         temp = data_gen()
-        if (temp[5] == 0 and a < each_num):
+        if (temp[0] == 0 and down < each_num):
             data.append(temp)
-            a += 1
-        elif (temp[5] == 1 and b < each_num):
+            down += 1
+        elif (temp[0] == 1 and stay < each_num):
             data.append(temp)
-            b += 1
-        elif (temp[5] == 2 and c < each_num):
+            stay += 1
+        elif (temp[0] == 2 and up < each_num):
             data.append(temp)
-            c += 1
-        all_feat = (a+b+c)/each_num
+            up += 1
+        all_feat = (down+stay+up)/each_num
     return data
 
 

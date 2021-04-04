@@ -269,9 +269,6 @@ if __name__ == "__main__":
         df = pd.DataFrame(
             data, columns=['r', 'vc', 'los', 'daz', 'dlos', 'hdot_cmd'])
         df.to_csv('norm_data_train_uniform_ext.csv', header=False, index=False)
-    else:
-        mean = np.load('mean.npy').tolist()
-        std = np.load('std.npy').tolist()
     if os.path.exists('norm_data_test_uniform_ext.csv') is False:
         ## validation data
         data = uni_data_generator(90000)
@@ -284,6 +281,3 @@ if __name__ == "__main__":
         df = pd.DataFrame(
             data, columns=['r', 'vc', 'los', 'daz', 'dlos', 'hdot_cmd'])
         df.to_csv('norm_data_test_uniform_ext.csv', header=False, index=False)
-    else:
-        mean = np.load('mean_test.npy').tolist()
-        std = np.load('std_test.npy').tolist()

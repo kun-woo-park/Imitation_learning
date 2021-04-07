@@ -111,8 +111,6 @@ def data_gen():
         hdot = 0
         gamma = gamma0
         count_change_hdot = 0
-        err = 0
-        vc0 = vc
 
         # main loop
         for k in range(N-1):
@@ -231,7 +229,7 @@ def data_gen():
         hdot_cmd = 0
     if hdot_cmd == 20:
         hdot_cmd = 2
-    return [r, vc0, los, daz, dlos, hdot_cmd]
+    return [r, vc, los, daz, dlos, hdot_cmd]
 
 
 def uni_data_generator(num_of_data):

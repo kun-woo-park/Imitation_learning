@@ -60,7 +60,7 @@ python3 colision_avoidance_net.py --num_layers <> --num_nodes <>
 <img src="./img/block_model_fix.JPG" width="100%">
 
 각 block의 node와 layer를 자동으로 입력받아 실험결과를 저장하도록 두개의 bash script를 작성하여 실행시켰다. 실험내용의 범주는 아래와 같다. 각 실험내용은 총 4회씩 진행되었다. 학습에 대한 hyper parameters는 위의 network model 이미지에 작성된 내용대로 진행하였다.
-
+([] 안의 순서대로 block1, block2, block3의 parameter이다.)
 - Layer : [1, 1, 1] , [2, 2, 2]
 - Node : [20-80(interval 20), 20-80(interval 20), 20-80(interval 20)]
 

@@ -12,7 +12,7 @@ sh train.sh
 #### Figure 1. Environment overview
 <img src="./img/overview_fix.png" width="70%">
 
-항공기들의 충돌 시뮬레이션은 Figure 1.과 같이 진행된다. 회피기와 침입기는 반경 2000m의 원의 끝에서 해당 원의 중심으로 초속 200m로 접근한다. 침입기는 회피기의 경로에 대해 좌, 우 50도 범주 내의 각도로 접근하며, 경로의 다양화를 위해 접근각도에는 Gaussian random noise가 포함된다. 회피기의 출발고도는 1000m 상공이고, 침입기는 이를 기준으로 상, 하 200m의 범주 이내에서 접근한다. 항공기 기동은 뒤따르는 동역학을 따르도록 구현하였다. 동역학 구성의 단순화를 위해 항공기의 회피에 사용되는 기동명령은 상, 하, 유지기동의 총 3개의 명령으로 한정하였다. 항공기가 수직방향으로의 기동명령만을 주기 때문에, 항공기 옆면에서 봤을때의 힘(Force)와 속도(Velocity)를 분석하여 동역학을 구현하였다. 먼저 Figure 2.에서 항공기의 속도에 대한 벡터를 분석하였다. R_dot은 항공기가 수평으로 진행하는 속도이고, h_dot은 항공기가 수직으로 진행하는 속도(고도 변화율), V는 항공기의 속도이다. 여기서 지면과의 시야각을 gamma(line of sight)라고 했을때 R_dot은 Vcos(gamma)를 만족한다. Figure 3.는 항공기의 속도 변화(가속도)에 대한 분석이다. 항공기의 기동 명령은 기체를 기준으로 수직으로 작용하는 a_c이고, 수직방향으로의 이동에 사용되는 가속도는 Figure 2. 에서 볼 수 있다시피, (a_c)cos(gamma)로 계산 할 수 있다. 비행기의 운동에는 늘 중력이 작용하기 때문에 실제 수직방향의 총 가속도는, 수직방향의 기동명령에 의한 가속도 (a_c)cos(gamma)에서 중력가속도 g를 뺀 값이 된다. Figure 4.은 앞서말한 벡터분석들을 통합하여, 항공기에 기동명령hc_dot을 주었을 때 항공기가 실제처럼 약 1초정도의 반응 시간(기동을 변화시킬때 해당 기동명령에 동일하게 반응할때까지 걸리 시간)을 두도록 구현한 역학모델이다.
+항공기들의 충돌 시뮬레이션은 Figure 1.과 같이 진행된다. 회피기와 침입기는 반경 2000m의 원의 끝에서 해당 원의 중심으로 초속 200m로 접근한다. 침입기는 회피기의 경로에 대해 좌, 우 50도 범주 내의 각도로 접근하며, 경로의 다양화를 위해 접근각도에는 Gaussian random noise가 포함된다. 회피기의 출발고도는 1000m 상공이고, 침입기는 이를 기준으로 상, 하 200m의 범주 이내에서 접근한다. 항공기 기동은 뒤따르는 동역학을 따르도록 구현하였다. 동역학 구성의 단순화를 위해 항공기의 회피에 사용되는 기동명령은 상, 하, 유지기동의 총 3개의 명령으로 한정하였다. 항공기가 수직방향으로의 기동명령만을 주기 때문에, 항공기 옆면에서 봤을때의 힘(Force)와 속도(Velocity)를 분석하여 동역학을 구현하였다. 먼저 Figure 2.에서 항공기의 속도에 대한 벡터를 분석하였다. <img src="https://latex.codecogs.com/gif.latex?\dot{R}"> 은 항공기가 수평으로 진행하는 속도이고, <img src="https://latex.codecogs.com/gif.latex?\dot{h}">은 항공기가 수직으로 진행하는 속도(고도 변화율), <img src="https://latex.codecogs.com/gif.latex?V">는 항공기의 속도이다. 여기서 지면과의 시야각을 <img src="https://latex.codecogs.com/gif.latex?\gamma">(line of sight)라고 했을때 <img src="https://latex.codecogs.com/gif.latex?\dot{R}">은 <img src="https://latex.codecogs.com/gif.latex?Vcos(\gamma)">를 만족한다. Figure 3.는 항공기의 속도 변화(가속도)에 대한 분석이다. 항공기의 기동 명령은 기체를 기준으로 수직으로 작용하는 <img src="https://latex.codecogs.com/gif.latex?a_c">이고, 수직방향으로의 이동에 사용되는 가속도는 Figure 2. 에서 볼 수 있다시피, <img src="https://latex.codecogs.com/gif.latex?{a_c}cos(\gamma)">로 계산 할 수 있다. 비행기의 운동에는 늘 중력이 작용하기 때문에 실제 수직방향의 총 가속도는, 수직방향의 기동명령에 의한 가속도 <img src="https://latex.codecogs.com/gif.latex?{a_c}cos(\gamma)">에서 중력가속도 <img src="https://latex.codecogs.com/gif.latex?g">를 뺀 값이 된다. Figure 4.은 앞서말한 벡터분석들을 통합하여, 항공기에 기동명령<img src="https://latex.codecogs.com/gif.latex?\dot{h_c}">을 주었을 때 항공기가 실제처럼 약 1초정도의 반응 시간(기동을 변화시킬때 해당 기동명령에 동일하게 반응할때까지 걸리 시간)을 두도록 구현한 역학모델이다.
 
 #### Figure 2. Analysis on velocity vector of aircraft 
 
@@ -28,11 +28,11 @@ sh train.sh
 
 회피를 판단하는 기준은 총 5가지의 feature에 대한 연산으로 진행할 수 있도록 하였다. 5개의 feature는 아래와 같다.
 
-- r : 회피기와 침입기의 상대거리
-- vc : 침입기의 접근속도(상대속도)
-- los : Line of sight
-- daz : Azimuth의 스텝 당 변화량
-- dlos : Los의 스텝 당 변화량
+- r (<img src="https://latex.codecogs.com/gif.latex?r">): 회피기와 침입기의 상대거리
+- vc (<img src="https://latex.codecogs.com/gif.latex?v_c">): 침입기의 접근속도(상대속도)
+- los (<img src="https://latex.codecogs.com/gif.latex?\theta">): Line of sight
+- daz (<img src="https://latex.codecogs.com/gif.latex?\dot{\phi}">): Azimuth의 스텝 당 변화량
+- dlos (<img src="https://latex.codecogs.com/gif.latex?\dot{\theta}">): Los의 스텝 당 변화량
 
 5개의 feature들로, 해당 진행경로를 유지했을때 상대기와의 예상 최소 수직거리(MDV, minimum distance of vertical)와 예상 최소 수평거리(MDH, minimum distance of horizontal)을 계산할 수 있었다. 여기에 기동을 푸는 조건을 위해 필요한 현재 침입기와의 고도차이(코드에선 dist_cruise로 표현하였다.)역시 계산 할 수 있었다.
 

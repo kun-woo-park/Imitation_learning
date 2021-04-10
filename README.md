@@ -1,5 +1,5 @@
 # Imitation_learning
- 본 Repo는 항공기 충돌회피 보조시스템 학습을 위한 policy net의 구조를 실험하는 내용이다. 본 Repo는 항공기 회피를 위한 항공기 충돌 시뮬레이션 환경 구성과 이후 강화학습의 정책네트워크로써 사용될 네트워크를 모델링 하여 학습하는 과정을 포함한다. 강화학습을 이용한 최적화는 [Model_Optimization_Using_PPO](https://github.com/kun-woo-park/Model_Optimization_Using_PPO)에서, YOLOV4와 함께 Jetson Xavier 위에 융합 구현한 내용은 [YOLOV4_UDP_Jetson](https://github.com/kun-woo-park/YOLOV4_UDP_Jetson)에서 확인할 수 있다. [모방학습을 활용한 항공기 충돌회피 정책 네트워크 모델링.pdf](모방학습을%20활용한%20항공기%20충돌회피%20정책%20네트워크%20모델링.pdf) 에서 논문 내용을 확인 할 수 있다. 정리되지 않은 실험내용은 [Previous_experiments](https://github.com/aisl-khu/collision_avoidance/tree/master/Aircraft_avoidance_policy_net)에서 확인할 수 있다.
+ 본 Repo는 항공기 충돌회피 보조시스템 학습을 위한 policy net의 구조를 실험하는 내용이다. 본 Repo는 항공기 회피를 위한 항공기 충돌 시뮬레이션 환경 구성과 이후 강화학습의 정책네트워크로써 사용될 네트워크를 모델링 하여 학습하는 과정을 포함한다. 강화학습을 이용한 최적화는 [Model_Optimization_Using_PPO](https://github.com/kun-woo-park/Model_Optimization_Using_PPO)에서, YOLOV4와 함께 Jetson Xavier 위에 융합 구현한 내용은 [YOLOV4_UDP_Jetson](https://github.com/kun-woo-park/YOLOV4_UDP_Jetson)에서 확인할 수 있다. [모방학습을 활용한 항공기 충돌회피 정책 네트워크 모델링.pdf](모방학습을%20활용한%20항공기%20충돌회피%20정책%20네트워크%20모델링.pdf) 에서 논문 내용을 확인 할 수 있다. 정리되지 않은 실험내용은 [Previous_experiments](https://github.com/aisl-khu/collision_avoidance/tree/master/Aircraft_avoidance_policy_net)에서 확인할 수 있다. (Github markdown 문서 특성상 Latex 문자를 이미지형태로 가져왔다.)
 
 ## Implement project
 ```bash

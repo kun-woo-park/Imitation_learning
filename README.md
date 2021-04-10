@@ -41,44 +41,44 @@ sh train.sh
 
 ### Python code of decision loop
 ```python
-                if min_dist_vert>0:
-                    if min_dist_vert<dist_sep:
-                        if np.abs(dist_cruise)<dist_sep:
-                            if (min_dist_horiz <dist_sep):
-                                if hdot_cmd != -20:
-                                    count_change_hdot+=1
+if min_dist_vert>0:
+    if min_dist_vert<dist_sep:
+        if np.abs(dist_cruise)<dist_sep:
+            if (min_dist_horiz <dist_sep):
+                if hdot_cmd != -20:
+                    count_change_hdot+=1
 
-                                hdot_cmd = -20
-                            else:
-                                hdot_cmd=0
-                        else:
-                            hdot_cmd=0
-                    else:
-                        if np.abs(dist_cruise)>dist_sep:
-                            hdot_cmd = 0
-                        else:
-                            if hdot_cmd != -20:
-                                count_change_hdot+=1
-                            hdot_cmd = -20
-                else:
-                    if min_dist_vert>-dist_sep:
-                        if np.abs(dist_cruise)<dist_sep:
-                            if min_dist_horiz <dist_sep:
-                                if hdot_cmd != 20:
-                                    count_change_hdot+=1
+                hdot_cmd = -20
+            else:
+                hdot_cmd=0
+        else:
+            hdot_cmd=0
+    else:
+        if np.abs(dist_cruise)>dist_sep:
+            hdot_cmd = 0
+        else:
+            if hdot_cmd != -20:
+                count_change_hdot+=1
+            hdot_cmd = -20
+else:
+    if min_dist_vert>-dist_sep:
+        if np.abs(dist_cruise)<dist_sep:
+            if min_dist_horiz <dist_sep:
+                if hdot_cmd != 20:
+                    count_change_hdot+=1
 
-                                hdot_cmd = 20
-                            else:
-                                hdot_cmd=0
-                        else:
-                            hdot_cmd=0
-                    else:
-                        if np.abs(dist_cruise)>dist_sep:
-                            hdot_cmd = 0
-                        else:
-                            if hdot_cmd!=20:
-                                count_change_hdot+=1
-                            hdot_cmd=20
+                hdot_cmd = 20
+            else:
+                hdot_cmd=0
+        else:
+            hdot_cmd=0
+    else:
+        if np.abs(dist_cruise)>dist_sep:
+            hdot_cmd = 0
+        else:
+            if hdot_cmd!=20:
+                count_change_hdot+=1
+            hdot_cmd=20
 ```
                             
 이렇게 구현된 환경을 토대로 학습시키기 위해서는, 비행기가 어떤 상황의 어떤 순간에던 적용이 가능하도록, 데이터를 뽑을때 랜덤한 time step에서 랜덤하게 샘플을 추출할 필요가 있었다. 따라서 하나의 에피소드의 전체 time line 에서 랜덤한 time step 지점을 뽑아 샘플로 만들었다. 각 데이터 샘플은 네트워크의 입력으로 들어갈 5개의 feature (r, vc, los, das, dlos)와 그때 비행기에게 내려야할 고도변화 명령(hdot_cmd)로 구성되었다.

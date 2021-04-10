@@ -45,7 +45,7 @@ python3 colision_avoidance_net.py --num_layers <> --num_nodes <>
 #### Calculate MDV, MDH and dist_cruise
 <img src="./img/feature_form.PNG" width="20%">
 
-이 세가지 정보 (MDV, MDH and dist_cruise)로 회피 명령을 내릴지, 혹은 현재 경로를 유지할지를 매 순간마다 결정할 수 있는 닫힌 결정루프를(만약, 강화학습에 적용한다면 MDP를 기준으로 설계해야 하기 때문) 설계해야 했다. 설계한 결정루프의 구조는 아래와 같다. dist_sep는 항공기가 회피했다고 판단하는 최소 거리로 이 거리 이상을 벗어나야 회피했다고 판단한다(여기선 100m로 지정했다).
+이 세가지 정보 (MDV, MDH and dist_cruise(<img src="https://latex.codecogs.com/gif.latex?d_c">))로 회피 명령을 내릴지, 혹은 현재 경로를 유지할지를 매 순간마다 결정할 수 있는 닫힌 결정루프를(만약, 강화학습에 적용한다면 MDP를 기준으로 설계해야 하기 때문) 설계해야 했다. 설계한 결정루프의 구조는 아래와 같다. dist_sep(<img src="https://latex.codecogs.com/gif.latex?d_s">)는 항공기가 회피했다고 판단하는 최소 거리로 이 거리 이상을 벗어나야 회피했다고 판단한다(여기선 100m로 지정했다).
 
 #### Figure 5. Command decision loop
 <img src="./img/avoid_flowchart.jpeg" width="60%">

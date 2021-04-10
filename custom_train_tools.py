@@ -178,7 +178,7 @@ def train_model(num_layers, _nodes, lr, batch_size, train_loader, val_loader, mo
             len(train_loader), val_loss / len(val_loader), val_acc*100
         ))
     # save model
-    model_name = saving_path+"Custom_model_"+model_char+"_fin"
+    model_name = saving_path+"Custom_model_"+model_char+"_fin.pth"
     torch.save(model, model_name)
     return model
 

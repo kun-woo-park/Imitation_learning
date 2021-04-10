@@ -7,6 +7,12 @@ git clone https://github.com/kun-woo-park/Imitation_learning.git
 cd Imitation_learning
 sh train.sh
 ```
+or
+```bash
+git clone https://github.com/kun-woo-park/Imitation_learning.git
+cd Imitation_learning
+python3 colision_avoidance_net.py --num_layers <> --num_nodes <>
+```
 ### 1. Project overview
 
 #### Figure 1. Environment overview

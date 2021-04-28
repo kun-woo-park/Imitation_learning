@@ -5,6 +5,7 @@
 ```bash
 git clone https://github.com/kun-woo-park/Imitation_learning.git
 cd Imitation_learning
+mkdir res_log res_img res_model
 sh train.sh
 ```
 or

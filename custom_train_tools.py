@@ -63,7 +63,7 @@ class FClayer(nn.Module):                                       # define fully c
     def __init__(self, innodes, nodes):
         super(FClayer, self).__init__()
         self.fc = nn.Linear(innodes, nodes)
-        self.act = nn.LeakyReLU(0.2, inplace=True)
+        self.act = nn.LeakyReLU(0.1, inplace=True)
 
     def forward(self, x):
         out = self.fc(x)
